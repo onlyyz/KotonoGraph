@@ -1,0 +1,55 @@
+/*VISUAL ELEMENT*/
+
+Toolbar{
+    background-color: var(--ds-color-window-dark-grey-1);
+    height: var(--ds-metrics-window-pixels-35);
+}
+TextField{
+    padding: var(--ds-metrics-window-pixels-4);
+}
+
+/* BUTTONS */
+
+.Button
+{
+    background-color: var(--ds-color-window-dark-grey-5);
+    border-color: var(--ds-color-window-dark-grey-1);
+    margin: var(--ds-metrics-window-pixels-4);
+    max-height: var(--ds-metrics-window-pixels-25);
+}
+.Button:hover
+{
+    background-color: #2B3D2F;
+}
+.Button:active
+{
+    background-color: var(--ds-color-window-dark-grey-3);
+    color: var(--ds-color-window-yellow);
+}
+
+
+/* BUILT-IN */
+.unity-text-field__label
+{
+    padding: var(--ds-metrics-window-pixels-4);
+}
+
+TextField:focus>.unity-text-field__label
+{
+    color: var(--ds-color-window-yellow);
+}
+
+.unity-text-field__input
+{
+    background-color: var(--ds-color-window-dark-grey-1);
+    border-color: var(--ds-color-window-dark-grey-6);
+    border-radius: var(--ds-metrics-window-pixels-4);
+    max-height: var(--ds-metrics-window-pixels-25);
+    min-width: var(--ds-metrics-window-pixels-120);
+    padding-left: var(--ds-metrics-window-pixels-6);
+}
+
+.unity-text-field__input:focus
+{
+    color: var(--ds-color-window-yellow);
+}
