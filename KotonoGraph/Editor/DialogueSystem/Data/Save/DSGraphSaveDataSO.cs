@@ -13,7 +13,7 @@ namespace DS.Data.Save
          [field: SerializeField] public List<string> OldUngroupedNodeNames  { get; set; }
          [field: SerializeField] public SerializableDictionary<string, List<string>> OldGroupedNodeNames { get; set; }
 
-         public void Initalize(string fileName)
+         public void Initialize(string fileName)
          {
              FileName = fileName;
              Groups = new List<DSGroupSaveData>();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -97,7 +98,10 @@ namespace DS.Elements
             customDataContainer.AddToClassList("ds-node_custom-data-container");
 
             Foldout textFoldout = DSElementUtility.CreateFoldout("Dialogue Text");
-            TextField textFile = DSElementUtility.CreateTextArea(DialogueName);
+            TextField textFile = DSElementUtility.CreateTextArea(Text,null, callBack =>
+            {
+                Text = callBack.newValue;
+            });
             
             
             textFile.AddClasses
@@ -139,7 +143,13 @@ namespace DS.Elements
                 
                 graphView.DeleteElements(port.connections);
             }
-        }        
+        }
+
+        public bool IsStartingNode()
+        {
+            Port inputPort = (Port)inputContainer.Children().First();
+            return !inputPort.connected;
+        }
         
         #endregion
         
