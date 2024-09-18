@@ -1,0 +1,17 @@
+{
+    "name": "kuozhan",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b6195b25b6c65614d878e4eeff724285",
+        "GUID:43ebe59bd148dd341b8601b31f7d550c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

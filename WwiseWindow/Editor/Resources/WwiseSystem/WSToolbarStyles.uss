@@ -1,0 +1,14 @@
+WSSelectionSection
+{
+	background-color:rgba(60.0,60.0,60.0,255.0);
+}
+
+.labelMinWidth {
+	min-width: 60px;
+	padding-leftight: 20px;
+}
+#unity-text-input {
+	/*color: #ff0000;*/
+	padding-right: 60px;
+	min-width: 60px;
+}

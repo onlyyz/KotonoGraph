@@ -1,0 +1,95 @@
+/* VISUAL ELEMENTS */
+
+.labelMinWidth {
+	min-width: 60px;
+	padding-leftight: 20px;
+}
+#unity-text-input {
+	color: #e3782d;
+	padding-left: 0px;
+	padding-right: 0px;
+	-unity-text-align: middle-center;
+	padding: 4px;
+	min-width: 36px;
+}
+
+
+#IconName{
+	flex-direction: row;
+}
+
+Slider{
+	height: 20px;
+	width: 120px;
+	margin-top: 6px;
+}
+
+Label{
+	-unity-text-align: middle-left ;
+	padding: 4px;
+	position: relative;
+}
+
+PopupField{
+	margin-top: 6px;
+	padding-right: 4px;
+}
+
+
+TextField
+{
+	padding: var(--ws-metrics-window-pixels-4);
+	
+}
+
+
+Button
+{
+	background-color: var(--ws-colors-window-dark-grey-5);
+	border-color: var(--ws-colors-window-dark-grey-1);
+	margin: var(--ws-metrics-window-pixels-4);
+	max-height: var(--ws-metrics-window-pixels-25);
+}
+
+Button:hover
+{
+	background-color: var(--ws-colors-window-dark-grey-2);
+}
+
+Button:active
+{
+	background-color: var(--ws-colors-window-dark-grey-3);
+	color: var(--ws-colors-window-yellow);
+}
+
+/* BUILT-IN */
+
+.unity-text-field__label
+{
+	padding: var(--ws-metrics-window-pixels-4);
+}
+
+TextField:focus > .unity-text-field__label
+{
+	color: var(--ws-colors-window-yellow);
+}
+
+.unity-text-field__input
+{
+	background-color: var(--ws-colors-window-dark-grey-1);
+	border-color: var(--ws-colors-window-dark-grey-6);
+	border-radius: var(--ws-metrics-window-pixels-4);
+	max-height: var(--ws-metrics-window-pixels-25);
+	min-width: var(--ws-metrics-window-pixels-120);
+	padding-left: var(--ws-metrics-window-pixels-6);
+}
+
+.unity-text-field__input:focus
+{
+	color: var(--ws-colors-window-yellow);
+}
+
+.ws-toolbar__button__selected
+{
+	color: var(--ws-colors-window-yellow);
+}
