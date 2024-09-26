@@ -12,7 +12,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84384b136ac3e6d4ba63b77222050e57, type: 3}
   m_Name: New Code Graph Asset
   m_EditorClassIdentifier: 
-  m_nodes: []
+  m_nodes:
+  - rid: 8567505152167116886
+  - rid: 8567505152167116887
+  - rid: 8567505152167116889
+  - rid: 8567505152167116891
+  m_connections:
+  - rid: 8567505152167116888
+  - rid: 8567505152167116890
+  - rid: 8567505152167116892
+  self: {fileID: 919132149155446097, guid: 3c46b016ca938c548a845782b1961e11, type: 3}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8567505152167116886
+      type: {class: DebugLogNode, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        m_guid: a5483765-8bc2-4c4c-8d1c-b02b85eede10
+        m_Position:
+          serializedVersion: 2
+          x: 513
+          y: 176
+          width: 0
+          height: 0
+        typeName: Kotono.Code.DebugLogNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        logMessage: 132
+    - rid: 8567505152167116887
+      type: {class: StartNode, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        m_guid: dcbd8b3e-1814-430d-a265-5552abac4687
+        m_Position:
+          serializedVersion: 2
+          x: 197
+          y: 196
+          width: 75
+          height: 77
+        typeName: Kotono.Code.StartNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+    - rid: 8567505152167116888
+      type: {class: CodeGraphConnection, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        inputPort:
+          nodeID: a5483765-8bc2-4c4c-8d1c-b02b85eede10
+          portIndex: 0
+        outputPort:
+          nodeID: dcbd8b3e-1814-430d-a265-5552abac4687
+          portIndex: 0
+    - rid: 8567505152167116889
+      type: {class: DebugLogNode, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        m_guid: fd1d78ad-151e-4415-aa7a-43471b546fec
+        m_Position:
+          serializedVersion: 2
+          x: 829
+          y: 323
+          width: 0
+          height: 0
+        typeName: Kotono.Code.DebugLogNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        logMessage: 5555
+    - rid: 8567505152167116890
+      type: {class: CodeGraphConnection, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        inputPort:
+          nodeID: fd1d78ad-151e-4415-aa7a-43471b546fec
+          portIndex: 0
+        outputPort:
+          nodeID: a5483765-8bc2-4c4c-8d1c-b02b85eede10
+          portIndex: 1
+    - rid: 8567505152167116891
+      type: {class: MoveNode, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        m_guid: 5ec0d44a-ada7-41bb-813e-cf5457991762
+        m_Position:
+          serializedVersion: 2
+          x: 655
+          y: 465
+          width: 239
+          height: 97
+        typeName: Kotono.Code.MoveNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        Direction: {x: 0, y: 123132, z: 1}
+    - rid: 8567505152167116892
+      type: {class: CodeGraphConnection, ns: Kotono.Code, asm: KotonoPCGGraph}
+      data:
+        inputPort:
+          nodeID: 5ec0d44a-ada7-41bb-813e-cf5457991762
+          portIndex: 0
+        outputPort:
+          nodeID: fd1d78ad-151e-4415-aa7a-43471b546fec
+          portIndex: 1

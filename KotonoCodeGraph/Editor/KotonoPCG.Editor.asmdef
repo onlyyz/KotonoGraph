@@ -1,7 +1,9 @@
 {
     "name": "KotonoPCG.Editor",
     "rootNamespace": "Kotono.Code.Editor",
-    "references": ["GUID:f6354bd3f9f20104eae9b02a57ac5bd8"],
+    "references": [
+        "GUID:f6354bd3f9f20104eae9b02a57ac5bd8"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

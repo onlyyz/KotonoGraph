@@ -1,4 +1,6 @@
+using System;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Kotono.Code.Editor
@@ -31,19 +33,58 @@ namespace Kotono.Code.Editor
         private CodeGraphView m_currentGraphView;
 
         #region Load
-
+        
+        //启动判断 不用加载操作
+        private void OnEnable()
+        {
+            if (m_currentGraph != null)
+            {
+                DrawGraph();
+            }
+        }
+        
         public void Load(CodeGraphAsset target)
         {
             m_currentGraph=  target;
             DrawGraph();
         }
 
+        
+       
         public void DrawGraph()
         {
             m_serializedGraphAsset = new SerializedObject(m_currentGraph);
             m_currentGraphView = new CodeGraphView(m_serializedGraphAsset,this);
+            
+            //脏标记
+            m_currentGraphView.graphViewChanged += OnGraphViweChanged;
             rootVisualElement.Add(m_currentGraphView);
         }
+
+        private void OnGUI()
+        {
+            if (m_currentGraph != null)
+            {
+                if( EditorUtility.IsDirty(m_currentGraph))
+                {
+                    this.hasUnsavedChanges = true;
+                }
+                else
+                {
+                    this.hasUnsavedChanges = false;
+                }
+                
+            }
+        }
+        
+        private GraphViewChange OnGraphViweChanged(GraphViewChange graphviewchange)
+        {
+            EditorUtility.SetDirty(m_currentGraph);
+            return graphviewchange;
+        }
+
+   
+
         #endregion
     }
 }
