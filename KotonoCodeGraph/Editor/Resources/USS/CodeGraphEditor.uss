@@ -1,0 +1,11 @@
+CodeGraphView
+{
+    flex-grow: 3;
+}
+#Grid
+{
+    --thick-lines:2;
+    --spacing: 15;
+    --grid-background-color: rgba(35,35,35);
+    --line-color: rgba(32,32,32);
+}
