@@ -3,9 +3,11 @@ using System.Linq;
 using Codice.Client.BaseCommands.BranchExplorer;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Graphs;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Edge = UnityEditor.Experimental.GraphView.Edge;
 using Port = UnityEditor.Experimental.GraphView.Port;
 
 namespace Kotono.Code.Editor
@@ -38,7 +40,7 @@ namespace Kotono.Code.Editor
             
             m_searchProvider = ScriptableObject.CreateInstance<CodeGraphWindowSearchProvider>();
             m_searchProvider.graph = this;
-            this.nodeCreationRequest = ShowSearchWindow;
+            nodeCreationRequest = ShowSearchWindow;
 
             AddManipulatorToGraph();
             
@@ -53,7 +55,8 @@ namespace Kotono.Code.Editor
             //绘制节点
             DrawNodes();
             DrawConnections();
-            graphViewChanged += OnGraphViewChanged;
+            OnGraphViewChanged();
+            
         }
 
   
@@ -90,68 +93,57 @@ namespace Kotono.Code.Editor
         
         #region OnGraphViewChanged
         
-        private GraphViewChange OnGraphViewChanged(GraphViewChange graphviewchange)
+        private void OnGraphViewChanged()
         {
-            //移动
-            if (graphviewchange.movedElements != null)
+            graphViewChanged = (changes =>
             {
-                Undo.RecordObject(m_serializedObject.targetObject, "Move Node");
-                
-                List<CodeEditorNode> nodesToMove = graphviewchange.movedElements.OfType<CodeEditorNode>().ToList();
+                //移动
+                if (changes.movedElements != null)
                 {
+                    Undo.RecordObject(m_serializedObject.targetObject, "Move Node");
+                
+                    List<CodeEditorNode> nodesToMove = changes.movedElements.OfType<CodeEditorNode>().ToList();
+                
                     if (nodesToMove.Count > 0)
-                    {
                         foreach (var node in nodesToMove)
-                        {
                             node.SvaPosition();
-                        }
-                    }
                 }
-            }
             
-            //移除物体
-            if (graphviewchange.elementsToRemove != null)
-            {
-                Undo.RecordObject(m_serializedObject.targetObject, "Remove Node");
+                //移除物体
+                if (changes.elementsToRemove != null)
+                {
+                    Undo.RecordObject(m_serializedObject.targetObject, "Remove Node");
                 
-                List<CodeEditorNode> nodesToRemove = graphviewchange.elementsToRemove.OfType<CodeEditorNode>().ToList();
+                    List<CodeEditorNode> nodesToRemove = changes.elementsToRemove.OfType<CodeEditorNode>().ToList();
              
-                if (nodesToRemove.Count > 0)
+                    if (nodesToRemove.Count > 0)
+                        foreach (var node in nodesToRemove)
+                            RemoveNode(node);
+                
+                    List<Edge> edges = changes.elementsToRemove.OfType<Edge>().ToList();
+                    if (edges.Count > 0)
+                        foreach (Edge edge in edges)
+                            RemoveConnection(edge);
+                }
+
+            
+                if (changes.edgesToCreate != null)
                 {
-                  
-                    foreach (var node in nodesToRemove)
-                    {
-                        RemoveNode(node);
-                    }
+                    Undo.RecordObject(m_serializedObject.targetObject, "Connection");
+                
+                    var connections = changes.edgesToCreate;
+
+                    if (connections.Count > 0)
+                        foreach (var edge in connections)
+                        {
+                            CreateEdge(edge);
+                           
+                        }
                 }
                 
-                List<Edge> edges = graphviewchange.elementsToRemove.OfType<Edge>().ToList();
-                if (edges.Count > 0)
-                {
-                    foreach (Edge edge in edges)
-                    {
-                        RemoveConnection(edge);
-                    }
-                }
-            }
-
-
-            if (graphviewchange.edgesToCreate != null)
-            {
-                Undo.RecordObject(m_serializedObject.targetObject, "Connection");
-                
-                var connections = graphviewchange.edgesToCreate;
-
-                if (connections.Count > 0)
-                {
-                    foreach (var edge in connections)
-                    {
-                        CreateEdge(edge);
-                    }
-                }
-            }
-
-            return graphviewchange;
+                return changes;
+            });
+          
         }
         
         #endregion
@@ -196,6 +188,9 @@ namespace Kotono.Code.Editor
         
         public void AddManipulatorToGraph()
         {
+            //放大缩小
+            SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
+
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
@@ -301,7 +296,12 @@ namespace Kotono.Code.Editor
             return node;
         }
 
+        
+        
+        
         #endregion
+
+        
     }
     
 }

@@ -25,7 +25,6 @@ namespace Kotono.Code
         public void NewGUID()
         {
             m_guid = System.Guid.NewGuid().ToString();
-          
         }
 
         public void SetPosition(Rect position)

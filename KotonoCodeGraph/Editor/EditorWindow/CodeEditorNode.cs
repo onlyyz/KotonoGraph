@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 namespace Kotono.Code.Editor
@@ -128,8 +129,12 @@ namespace Kotono.Code.Editor
         private void CreateFlowInputPort()
         {
             Port inputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(PortTypes.FlowPort));
+            inputPort.portColor = Color.blue; // 设置输入端口颜色
             inputPort.portName = "Input";
             inputPort.tooltip = "Flow input Port";
+            
+          
+            
             m_Ports.Add(inputPort);
             inputContainer.Add(inputPort);
         }
@@ -137,8 +142,11 @@ namespace Kotono.Code.Editor
         private void CreateFlowOutputPort()
         {
             m_outputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(PortTypes.FlowPort));
+            m_outputPort.portColor = Color.red; // 设置输出端口颜色
             m_outputPort.portName = "Out";
             m_outputPort.tooltip = "Flow out Port";
+            
+         
             m_Ports.Add(m_outputPort);
             outputContainer.Add(m_outputPort);
         }
@@ -149,5 +157,14 @@ namespace Kotono.Code.Editor
         {
             m_node.SetPosition(GetPosition());
         }
+
+        #region CallBack
+        
+        public override Port InstantiatePort(Orientation orientation, Direction direction, Port.Capacity capacity, Type type)
+        {
+            return Port.Create<ColoredEdge>(orientation, direction, capacity, type);
+        }
+        
+        #endregion
     }
 }
