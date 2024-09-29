@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace Kotono.Code
 {
-    [NodeInfo("Debug Log","Debug/Log Message")]
+    [UCLASS("Debug Log","Debug/Log Message")]
     public class DebugLogNode : CodeGraphNode
     {
-        [ExposedProperty]
+        [UPROPERTY]
         public string logMessage;
         public override string OnProcess(CodeGraphAsset currentGraph)
         {

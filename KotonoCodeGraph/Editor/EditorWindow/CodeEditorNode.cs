@@ -16,12 +16,16 @@ namespace Kotono.Code.Editor
         public CodeGraphNode Node => m_node;
        
         private Port m_outputPort;
+        private Port m_inputPort;
+        
         private List<Port> m_Ports;
        
         private SerializedObject m_serializedObject;
         private SerializedProperty m_serializedProperty;
+        
         public List<Port> Ports => m_Ports;
-       
+        public Port InputPort => m_inputPort;
+        
         public CodeEditorNode(CodeGraphNode node,SerializedObject codeGraphObject)
         {
             this.AddToClassList("code-graph-code");
@@ -30,7 +34,7 @@ namespace Kotono.Code.Editor
             m_serializedObject = codeGraphObject;
             
             Type typeInfo = node.GetType();
-            NodeInfoAttribute info = typeInfo.GetCustomAttribute<NodeInfoAttribute>();
+            UCLASSAttribute info = typeInfo.GetCustomAttribute<UCLASSAttribute>();
            
             title = info.title;
             m_Ports = new List<Port>();
@@ -56,7 +60,7 @@ namespace Kotono.Code.Editor
 
             foreach (FieldInfo property in typeInfo.GetFields())
             {
-                if (property.GetCustomAttribute<ExposedPropertyAttribute>() is ExposedPropertyAttribute exposedProperty)
+                if (property.GetCustomAttribute<UPROPERTYAttribute>() is UPROPERTYAttribute exposedProperty)
                 {
                     //抓取参数
                     // Debug.Log(property.Name);
@@ -128,15 +132,15 @@ namespace Kotono.Code.Editor
 
         private void CreateFlowInputPort()
         {
-            Port inputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(PortTypes.FlowPort));
-            inputPort.portColor = Color.blue; // 设置输入端口颜色
-            inputPort.portName = "Input";
-            inputPort.tooltip = "Flow input Port";
+            m_inputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(PortTypes.FlowPort));
+            m_inputPort.portColor = Color.blue; // 设置输入端口颜色
+            m_inputPort.portName = "Input";
+            m_inputPort.tooltip = "Flow input Port";
             
           
             
-            m_Ports.Add(inputPort);
-            inputContainer.Add(inputPort);
+            // m_Ports.Add(m_inputPort);
+            inputContainer.Add(m_inputPort);
         }
         
         private void CreateFlowOutputPort()

@@ -43,10 +43,10 @@ namespace Kotono.Code.Editor
                 {
                     if (type.CustomAttributes.ToList() != null)
                     {
-                        var attribute = type.GetCustomAttribute(typeof(NodeInfoAttribute));
+                        var attribute = type.GetCustomAttribute(typeof(UCLASSAttribute));
                         if (attribute != null)
                         {
-                            NodeInfoAttribute att = (NodeInfoAttribute)attribute;
+                            UCLASSAttribute att = (UCLASSAttribute)attribute;
                             //得知是具体的Node
                             var node = Activator.CreateInstance(type);
 

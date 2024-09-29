@@ -2,15 +2,13 @@ using UnityEngine;
 
 namespace Kotono.Code
 {
-    [NodeInfo("MoveNode","Action/Move")]
+    [UCLASS("MoveNode","Action/Move")]
     public class MoveNode : CodeGraphNode
     {
-        [ExposedProperty]
+        [UPROPERTY]
         public Vector3 Direction = Vector3.forward;
         public override string OnProcess(CodeGraphAsset currentGraph)
         {
-            Debug.Log("MoveNode.OnProcess");
-            Debug.Log(currentGraph.self.name);
             currentGraph.self.transform.position += Direction;
             return base.OnProcess(currentGraph);
         }

@@ -153,7 +153,9 @@ namespace Kotono.Code.Editor
         private void CreateEdge(Edge edge)
         {
             CodeEditorNode inputNode = (CodeEditorNode)edge.input.node;
-            int inputIndex = inputNode.Ports.IndexOf(edge.input);
+            //默认只有一个入口
+            // int inputIndex = inputNode.Ports.IndexOf(edge.input);
+            int inputIndex = 0;
             CodeEditorNode outputNode = (CodeEditorNode)edge.output.node;
             int outputIndex = outputNode.Ports.IndexOf(edge.output);
             
@@ -280,7 +282,9 @@ namespace Kotono.Code.Editor
                 return;
             }
 
-            Port inPort = inputNode.Ports[connetction.inputPort.portIndex];
+            //默认一个入口 InputPort
+            // Port inPort = inputNode.Ports[connetction.inputPort.portIndex];
+            Port inPort = inputNode.InputPort;
             Port outPort = outputNode.Ports[connetction.outputPort.portIndex];
 
             Edge edge = inPort.ConnectTo(outPort);

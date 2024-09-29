@@ -34,6 +34,7 @@ namespace Kotono.Code
 
         public virtual string OnProcess(CodeGraphAsset currentGraph)
         {
+            //先默认只有一个出口
             CodeGraphNode nextNodeInFlow = currentGraph.GetNodeFromOutput(m_guid, 0);
             if (nextNodeInFlow != null)
             {

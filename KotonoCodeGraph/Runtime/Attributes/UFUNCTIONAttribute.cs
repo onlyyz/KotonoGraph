@@ -2,7 +2,7 @@ using System;
 
 namespace Kotono.Code
 {
-    public class NodeInfoAttribute : Attribute
+    public class UFUNCTIONAttribute : Attribute
     {
         private string m_nodeTitle;
         private string m_menuItem;
@@ -13,7 +13,7 @@ namespace Kotono.Code
         public bool hasFlowInput => this.m_hasFlowInput;
         public bool hasFlowOutput => this.m_hasFlowOutput;
 
-        public NodeInfoAttribute(string title, string menuItem = " ",bool hasFlowInput = true , bool hasFlowOutput = true)
+        public UFUNCTIONAttribute(string title, string menuItem = " ",bool hasFlowInput = true , bool hasFlowOutput = true)
         {
             this.m_nodeTitle = title;
             this.m_menuItem = menuItem;
