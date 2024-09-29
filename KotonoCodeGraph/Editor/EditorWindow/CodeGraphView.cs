@@ -28,6 +28,8 @@ namespace Kotono.Code.Editor
         
         private CodeGraphWindowSearchProvider m_searchProvider;
         
+        
+        private CodeIcon codeIcon;
         public CodeGraphView(SerializedObject serializedGraphAsset,CodeEditorWindow CodeEditorWindow)
         {
             m_serializedObject = serializedGraphAsset;
@@ -50,8 +52,12 @@ namespace Kotono.Code.Editor
             
             background.SendToBack();
             
-            this.styleSheets.Add(Resources.Load<StyleSheet>("USS/CodeGraphEditor"));
+          
 
+            //加载资源
+            codeIcon = new CodeIcon();
+            this.styleSheets.Add(Resources.Load<StyleSheet>("USS/CodeGraphEditor"));
+            
             //绘制节点
             DrawNodes();
             DrawConnections();
@@ -227,6 +233,8 @@ namespace Kotono.Code.Editor
             // Debug.Log($"节点类型: {node.typeName}");
             //传递数据
             CodeEditorNode editorNode = new CodeEditorNode(node,m_serializedObject);
+            
+            
             editorNode.SetPosition(node.position);
             
             //保存
@@ -305,6 +313,51 @@ namespace Kotono.Code.Editor
         
         #endregion
 
+        //添加编辑器视图中右键可以触发的功能菜单
+        protected virtual void OnGraphViewBuildContextualMenu(ContextualMenuPopulateEvent evt) { }
+
+        //添加右键菜单中的功能
+        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+        {
+            base.BuildContextualMenu(evt);
+            //本编辑器中禁用duplicate功能，从菜单中删除
+            var dulplicateIndex = evt.menu.MenuItems().Count - 2;
+            if (dulplicateIndex >= 0)
+            {
+                evt.menu.RemoveItemAt(dulplicateIndex);
+                evt.menu.RemoveItemAt(dulplicateIndex);
+            }
+            
+             
+            // //断开连接指一键断开节点的连接；重建节点，也就是删除后再创建同类节点
+            // if (evt.target is NodeViewBase view)
+            // {
+            //     var nodes = selection.OfType<GraphElement>().OfType<NodeViewBase>().ToList();
+            //     evt.menu.AppendAction("断开连接", act => delete.DisconnectNodes(nodes));
+            //     evt.menu.AppendAction("重建节点", 
+            //         action => nodes.ForEach(n=>RecreateNode(n)),view.canDelete?DropdownMenuAction.Status.Normal: DropdownMenuAction.Status.Disabled);
+            //     evt.menu.AppendSeparator();
+            //     //打印节点在图里的位置，用于初期DEBUG，后面基本没啥用
+            //     if (selection.OfType<NodeViewBase>().Count() == 1)
+            //     {
+            //         evt.menu.AppendAction("输出位置", action => Debug.Log($"Node:{view.NodeData.GUID} Position:{view.GetPosition().position}"));
+            //         evt.menu.AppendSeparator();
+            //     }
+            // }
+            // //把视图拉回零点并重置缩放
+            // if (evt.target is VEGraphView)
+            // {
+            //     evt.menu.AppendAction("重置视图", act => ChangeViewToOriginalPoint());
+            // }
+            // OnBuildContextualMenu?.Invoke(evt);
+        }
+        
+        //在编辑器里选中节点UI时，在Inspector面板同步打开节点文件(选中节点数据文件）
+        // private void OpenInspectorOnClickNodeView(NodeViewBase nodeView)
+        // {
+        //     Selection.activeObject = nodeView.NodeData;
+        // }
+        
         
     }
     

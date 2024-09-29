@@ -53,6 +53,9 @@ namespace Kotono.Code.Editor
        
         public void DrawGraph()
         {
+            
+            CodeLibrary.Core.InstanceCodeLibrary();
+            
             m_serializedGraphAsset = new SerializedObject(m_currentGraph);
             m_currentGraphView = new CodeGraphView(m_serializedGraphAsset,this);
             
@@ -82,8 +85,7 @@ namespace Kotono.Code.Editor
             EditorUtility.SetDirty(m_currentGraph);
             return graphviewchange;
         }
-
-   
+ 
 
         #endregion
     }

@@ -1,0 +1,52 @@
+#bindingPath
+{
+    color: white;
+    background-color: #333;
+}
+
+#bindingPath > TextField > Label {
+    min-width: 60px;
+}
+
+#bindingPath > Vector3Field > Label {
+    min-width: 60px;
+}
+
+#bindingPath > Label {
+    color: white;
+    /* 更多你想要的样式 */
+}
+
+#myPropertyField > .unity-text-element {
+    color: white;
+    /* 更多你想要的样式 */
+}
+
+/* Wwise Node*/
+#WwiseNode{
+    
+}
+
+#WwiseEvent{
+    min-width: 300px;
+}
+#WwiseNode{
+    min-width:  300px;
+}
+#WwiseState{
+    min-width: 320px;
+}
+#WwiseRTPC{
+    min-width: auto;
+}
+
+#WwiseSwich{
+    min-width:  300px;
+}
+
+
+
+TextField
+{
+    margin-left: var(--metrics-window-pixels-n12);
+}
