@@ -38,11 +38,17 @@ namespace Kotono.Code.Editor
             m_node = node;
             m_serializedObject = codeGraphObject;
             
+            
+            
+           
             Type typeInfo = node.GetType();
             UCLASSAttribute info = typeInfo.GetCustomAttribute<UCLASSAttribute>();
             
             title = info.title;
             m_Ports = new List<Port>();
+
+
+            EventRegister(typeInfo,node);
             
             
             string[] depths = info.menuItem.Split('/');
@@ -168,7 +174,7 @@ namespace Kotono.Code.Editor
                             // 处理 UTITLEAttribute
                             DrawTitle(property.Name);
                             break;
-
+                       
                         default:
                             // 处理其他情况（如果需要）
                             break;
@@ -224,6 +230,29 @@ namespace Kotono.Code.Editor
 
         private void DrawWwiseProperty(string propertyName)
         {
+            if (m_serializedProperty == null)
+            {
+                // 如果还没有序列化的属性对象，先获取它
+                FetchSerializedProperty(); 
+            }
+            // m_serializedProperty.target 是 当前绑定的Node
+            SerializedProperty prop = m_serializedProperty.FindPropertyRelative(propertyName);
+            PropertyField field = new PropertyField(prop);
+            
+            IMGUIContainer customField = new IMGUIContainer(() =>
+            {
+                // 在这里绘制你的属性，类似于 Inspector 的 IMGUI 方法
+                EditorGUILayout.PropertyField(prop, new GUIContent("Custom Property"));
+            });
+
+          
+            
+            
+            // customField.bindingPath = prop.propertyPath; 
+            // this.title = prop.stringValue;
+            extensionContainer.Add(customField);
+            
+            
         }
 
         private void DrawTitle(string propertyName)
@@ -268,6 +297,33 @@ namespace Kotono.Code.Editor
                 outputPortPill = new Pill();
                 outputPortPill.icon = codeIcons.GetIcon();
                 m_outputPort.Add(outputPortPill);
+            }
+        }
+        
+        #endregion
+        
+        #region Event Manager
+
+        public void EventRegister( Type type,CodeGraphNode node)
+        {
+            // 正确的转换
+            EventBase eventNode = node as EventBase;
+            if (eventNode == null)
+            {
+                Debug.Log($"Invoking metho ");
+                return;
+            }
+            // 遍历类型中的所有方法
+            foreach (MethodInfo method in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            {
+                // 检查方法是否有 MyCustomAttribute
+                if (method.GetCustomAttribute(typeof(UFUNCTIONREGISTERAttribute)) is UFUNCTIONREGISTERAttribute attr)
+                {
+                    Debug.Log($"Invoking method: {method.Name} with description: ");
+
+                    // 调用方法
+                    method.Invoke(node, null);
+                }
             }
         }
         

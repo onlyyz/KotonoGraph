@@ -3,7 +3,8 @@
     "rootNamespace": "Kotono.Code",
     "references": [
         "GUID:7703dfca54ba8ec458e96d61ce424b76",
-        "GUID:7f20afbd53a463646a8c6af65a9be1c2"
+        "GUID:7f20afbd53a463646a8c6af65a9be1c2",
+        "GUID:e5b6f5159cbbe0345ae561f9714a3671"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

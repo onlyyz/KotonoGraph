@@ -2,7 +2,7 @@ using System;
 
 namespace Kotono.Code
 {
-    public class UFUNCTIONAttribute : Attribute
+    public class UFUNCTIONREGISTERAttribute : Attribute
     {
       
     }

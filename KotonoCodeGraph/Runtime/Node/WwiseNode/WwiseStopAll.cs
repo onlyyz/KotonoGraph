@@ -5,7 +5,7 @@ namespace Kotono.Code
     [UCLASS("StopAll","Wwise/StopAll")]
     public class WwiseStopAll : WwiseNode
     {
-[UTITLE]
+        [UTITLE]
         public string name = " stop all majiko ";
         public override string OnProcess(CodeGraphAsset currentGraph)
         {

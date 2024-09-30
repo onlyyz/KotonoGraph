@@ -13,96 +13,29 @@ MonoBehaviour:
   m_Name: New Code Graph Asset
   m_EditorClassIdentifier: 
   m_nodes:
-  - rid: 8567505228820119610
-  - rid: 8567505228820119611
-  - rid: 8567505228820119612
-  - rid: 8567505228820119613
-  - rid: 8567505228820119615
-  m_connections:
-  - rid: 8567505228820119614
-  - rid: 8567505228820119616
+  - rid: 8567505243786707002
+  m_connections: []
   self: {fileID: 919132149155446097, guid: 3c46b016ca938c548a845782b1961e11, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 8567505228820119610
-      type: {class: DebugLogNode, ns: Kotono.Code, asm: KotonoPCGGraph}
+    - rid: 8567505243786707002
+      type: {class: WwiseEvent, ns: Kotono.Code, asm: KotonoPCGGraph}
       data:
-        m_guid: b65b2014-d66a-44f7-97e6-a3d110a0336f
+        m_guid: 3addfc9a-4b6a-4715-b8c6-1ba9e4a600e9
         m_Position:
           serializedVersion: 2
-          x: 917
-          y: 171
-          width: 322
-          height: 97
-        typeName: Kotono.Code.DebugLogNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
+          x: 1486
+          y: 814
+          width: 300
+          height: 122
+        typeName: Kotono.Code.WwiseEvent, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
-        logMessage: 312313132123132132123132123132132123
-    - rid: 8567505228820119611
-      type: {class: WwiseNode, ns: Kotono.Code, asm: KotonoPCGGraph}
-      data:
-        m_guid: 33512364-11bb-4132-b72d-8a8c707c3795
-        m_Position:
-          serializedVersion: 2
-          x: 711
-          y: 329
-          width: 0
-          height: 0
-        typeName: Kotono.Code.WwiseNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-    - rid: 8567505228820119612
-      type: {class: WwiseStopAll, ns: Kotono.Code, asm: KotonoPCGGraph}
-      data:
-        m_guid: 5942cc7e-48fc-445f-89c4-1a7741616b06
-        m_Position:
-          serializedVersion: 2
-          x: 1095
-          y: 329
-          width: 130
-          height: 77
-        typeName: Kotono.Code.WwiseStopAll, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        name: ' stop all majiko '
-    - rid: 8567505228820119613
-      type: {class: StartNode, ns: Kotono.Code, asm: KotonoPCGGraph}
-      data:
-        m_guid: 00c99771-1eef-44d2-881a-7dad6ae993f9
-        m_Position:
-          serializedVersion: 2
-          x: 636
-          y: 133
-          width: 75
-          height: 77
-        typeName: Kotono.Code.StartNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-    - rid: 8567505228820119614
-      type: {class: CodeGraphConnection, ns: Kotono.Code, asm: KotonoPCGGraph}
-      data:
-        inputPort:
-          nodeID: b65b2014-d66a-44f7-97e6-a3d110a0336f
-          portIndex: 0
-        outputPort:
-          nodeID: 00c99771-1eef-44d2-881a-7dad6ae993f9
-          portIndex: 0
-    - rid: 8567505228820119615
-      type: {class: MoveNode, ns: Kotono.Code, asm: KotonoPCGGraph}
-      data:
-        m_guid: 8d2c7f40-c758-432d-ae22-78a5fb6a70ba
-        m_Position:
-          serializedVersion: 2
-          x: 1273
-          y: 113
-          width: 179
-          height: 97
-        typeName: Kotono.Code.MoveNode, KotonoPCGGraph, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        Direction: {x: 0, y: 3, z: 1}
-    - rid: 8567505228820119616
-      type: {class: CodeGraphConnection, ns: Kotono.Code, asm: KotonoPCGGraph}
-      data:
-        inputPort:
-          nodeID: 8d2c7f40-c758-432d-ae22-78a5fb6a70ba
-          portIndex: 0
-        outputPort:
-          nodeID: b65b2014-d66a-44f7-97e6-a3d110a0336f
-          portIndex: 0
+        scriptEvent:
+          idInternal: 0
+          valueGuidInternal: 
+          WwiseObjectReference: {fileID: 11400000, guid: ff6f9ea2589fd1340b5677aad323ac00, type: 2}
+        script1Event:
+          idInternal: 0
+          valueGuidInternal: 
+          WwiseObjectReference: {fileID: 11400000, guid: ff6f9ea2589fd1340b5677aad323ac00, type: 2}
